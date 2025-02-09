@@ -1,24 +1,32 @@
-(function (Prism) {
+{-# OPTIONS --safe #-}
+module Nat where
 
-	Prism.languages.agda = {
-		'comment': /\{-[\s\S]*?(?:-\}|$)|--.*/,
-		'string': {
-			pattern: /"(?:\\(?:\r\n|[\s\S])|[^\\\r\n"])*"/,
-			greedy: true,
-		},
-		'punctuation': /[(){}⦃⦄.;@]/,
-		'class-name': {
-			pattern: /((?:data|record) +)\S+/,
-			lookbehind: true,
-		},
-		'function': {
-			pattern: /(^[ \t]*)(?!\s)[^:\r\n]+(?=:)/m,
-			lookbehind: true,
-		},
-		'operator': {
-			pattern: /(^\s*|\s)(?:[=|:∀→λ\\?_]|->)(?=\s)/,
-			lookbehind: true,
-		},
-		'keyword': /\b(?:Set|abstract|constructor|data|eta-equality|field|forall|hiding|import|in|inductive|infix|infixl|infixr|instance|let|macro|module|mutual|no-eta-equality|open|overlap|pattern|postulate|primitive|private|public|quote|quoteContext|quoteGoal|quoteTerm|record|renaming|rewrite|syntax|tactic|unquote|unquoteDecl|unquoteDef|using|variable|where|with)\b/,
-	};
-}(Prism));
+open import Data.Nat
+open import Data.Unit
+open import Data.Bool
+open import Relation.Binary.PropositionalEquality
+
+-- Определяем тип натуральных чисел (Peano numbers)
+data ℕ : Set where
+  zero : ℕ
+  suc  : ℕ → ℕ
+
+-- Функция сложения
+_+_ : ℕ → ℕ → ℕ
+zero  + n = n
+(suc m) + n = suc (m + n)
+
+-- Пример использования
+testAddition : ℕ
+testAddition = (suc (suc zero)) + (suc zero)  -- 2 + 1 = 3
+
+-- Доказательство того, что 1 + 1 = 2
+
+one : ℕ
+one = suc zero
+
+two : ℕ
+two = suc one
+
+plusOneOneEqualsTwo : one + one ≡ two
+plusOneOneEqualsTwo = refl
