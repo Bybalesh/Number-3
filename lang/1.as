@@ -1,3 +1,26 @@
+package {
+
+ import flash.display.Sprite;
+ import flash.text.TextField;
+ import flash.events.Event;
+
+ public class Test extends Sprite {
+
+  private var textField:TextField;
+
+  public function Test() {
+   // constructor
+   trace("Hello, World!"); // Вывод в Output panel (Ctrl+Shift+M)
+
+   textField = new TextField();
+   textField.text = "Hello, ActionScript!";
+   textField.x = 50;
+   textField.y = 50;
+   addChild(textField);
+
+   this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+  }
+
 Prism.languages.actionscript = Prism.languages.extend('javascript', {
 	'keyword': /\b(?:as|break|case|catch|class|const|default|delete|do|dynamic|each|else|extends|final|finally|for|function|get|if|implements|import|in|include|instanceof|interface|internal|is|namespace|native|new|null|override|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|use|var|void|while|with)\b/,
 	'operator': /\+\+|--|(?:[+\-*\/%^]|&&?|\|\|?|<<?|>>?>?|[!=]=?)=?|[~?@]/
