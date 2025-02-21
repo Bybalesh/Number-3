@@ -2,11 +2,6 @@ language: python
 
 python:
 
-  - "3.7"
-
-dist: bionic
-
-
 script:
   - ./interpreter/meta/travis/build-test.sh
 
@@ -98,16 +93,9 @@ addons:
 
       - yarn
 
-
-install:
-
-  - opam init --auto-setup --compiler=4.07.1
-
-  - eval $(opam env)
-
-  - opam --version
-
-  - ocaml --version
+- opam init --auto-setup --compiler=4.07.1
+- opam --version
+- ocaml --version
 
   - opam install --yes ocamlbuild.0.14.0
 
